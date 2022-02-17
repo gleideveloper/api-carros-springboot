@@ -3,10 +3,10 @@ package com.carros.api;
 import com.carros.domain.Carro;
 import com.carros.domain.CarroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -43,8 +43,13 @@ public class CarrosController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public Iterable<Carro> get(@PathVariable("tipo") String tipo){
-        return carroService.getCarroByTipo(tipo);
+    public ResponseEntity getCarByType(@PathVariable("tipo") String tipo){
+        List<Carro> carros = carroService.getCarroByTipo(tipo);
+
+        //Exemplo 2 -> usando Ternário
+        return carros.isEmpty()?
+                ResponseEntity.noContent().build():
+                ResponseEntity.ok(carros);
     }
 
     @PostMapping

@@ -30,7 +30,7 @@ public class CarroService {
         return carroRepository.findById(id);
     }
 
-    public Iterable<Carro> getCarroByTipo(String tipo) {
+    public List<Carro> getCarroByTipo(String tipo) {
         return carroRepository.findByTipo(tipo);
     }
 
