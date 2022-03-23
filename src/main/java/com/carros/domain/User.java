@@ -18,9 +18,9 @@ public class User implements UserDetails {
     private Long id;
 
     private String nome;
-    private String email;
     private String login;
     private String senha;
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",

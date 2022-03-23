@@ -12,7 +12,7 @@ public class CarroDTO {
     private Long id;
     private String nome;
     private String tipo;
-    private String placa ="QHZ-0414";
+    //private String placa ="QHZ-0414";
 
     /**
      * ModelMapper -> Transferi os atributos de objeto para outro,
