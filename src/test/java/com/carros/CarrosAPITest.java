@@ -76,7 +76,7 @@ public class CarrosAPITest {
     public void testLista() {
         List<CarroDTO> carros = getCarros("/api/v1/carros").getBody();
         assertNotNull(carros);
-        assertEquals(32, carros.size());
+        assertEquals(30, carros.size());
     }
 
     @Test
