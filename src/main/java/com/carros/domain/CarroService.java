@@ -32,7 +32,7 @@ public class CarroService {
     public CarroDTO getCarroById(Long id) {
         //Exemplo 1-> Lambda
         Optional<Carro> carro = carroRep.findById(id);
-        return carro.map(CarroDTO::create).orElseThrow(()-> new ObjectNotFoundException("Carro NotFound!"));
+        return carro.map(CarroDTO::create).orElseThrow(()-> new ObjectNotFoundException("Carro não encontrado!!!"));
 
         /*/Exemplo 2->Functional style expression
         Optional<Carro> carroOp = carroRep.findById(id);

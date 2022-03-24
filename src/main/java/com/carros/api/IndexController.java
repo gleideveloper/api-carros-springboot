@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndexController {
     @GetMapping()
     public String get(){
-        return "API de Carros";
+        return "API de Carros - Heroku Git";
     }
 
     @GetMapping("/userInfo")
