@@ -1,8 +1,5 @@
-package com.carros.api;
+package com.carros.api.carros;
 
-import com.carros.domain.Carro;
-import com.carros.domain.CarroService;
-import com.carros.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -11,7 +8,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/carros")
