@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -21,7 +19,7 @@ import static junit.framework.TestCase.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CarrosApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class CarrosAPITest {
+public class CarrosAPITest extends BaseAPITest{
     @Autowired
     protected TestRestTemplate rest;
 
@@ -29,15 +27,15 @@ public class CarrosAPITest {
     private CarroService service;
 
     private ResponseEntity<CarroDTO> getCarro(String url) {
-        return
-                rest.withBasicAuth("user", "123").getForEntity(url, CarroDTO.class);
+        return get(url, CarroDTO.class);
     }
 
     private ResponseEntity<List<CarroDTO>> getCarros(String url) {
-        return rest.withBasicAuth("user", "123").exchange(
+        HttpHeaders headers = getHeaders();
+        return rest.exchange(
                 url,
                 HttpMethod.GET,
-                null,
+                new HttpEntity<>(headers),
                 new ParameterizedTypeReference<List<CarroDTO>>() {
                 });
     }
@@ -51,7 +49,7 @@ public class CarrosAPITest {
         carro.setTipo("esportivos");
 
         // Insert
-        ResponseEntity response = rest.withBasicAuth("admin", "123").postForEntity("/api/v1/carros", carro, null);
+        ResponseEntity response = post("/api/v1/carros", carro, null);
         System.out.println(response);
 
         // Verifica se criou
@@ -66,7 +64,7 @@ public class CarrosAPITest {
         assertEquals("esportivos", c.getTipo());
 
         // Deletar o objeto
-        rest.withBasicAuth("user", "123").delete(location);
+        delete(location, null);
 
         // Verificar se deletou
         assertEquals(HttpStatus.NOT_FOUND, getCarro(location).getStatusCode());

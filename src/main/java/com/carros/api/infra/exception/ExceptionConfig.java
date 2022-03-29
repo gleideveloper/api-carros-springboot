@@ -26,10 +26,10 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().build();
     }
 
-    @ExceptionHandler({AccessDeniedException.class})
+/*    @ExceptionHandler({AccessDeniedException.class})
     public ResponseEntity AccessDenied(){
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Error("Accesso negado"));
-    }
+    }*/
 
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
