@@ -16,9 +16,6 @@ public class Role implements GrantedAuthority {
     // USER, ADMIN, etc
     private String nome;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<User> users;
-
     @Override
     public String getAuthority() {
         return nome;
